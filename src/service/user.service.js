@@ -16,7 +16,7 @@ class UserService {
     //   where: whereOpt
     // })
 
-    return null
+    return 0
     
 
   }
