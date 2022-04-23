@@ -1,11 +1,32 @@
-const { createUser } = require('../service/user.service')
+const { createUser, getUserInfo } = require('../service/user.service')
 
 class userController {
   async register(ctx, next) {
 
     // 获取数据
-    // console.log(ctx.request.body)
     const { user_name, password } = ctx.request.body
+
+    // 数据校验
+    if(!user_name || !password) {
+      ctx.status = 400,
+      ctx.body = {
+        code: '10001',
+        message: '用户名或密码不能为空',
+        result: ''
+      }
+      return
+    }
+
+    if(await getUserInfo({ user_name })) {
+      ctx.status = 409,
+      ctx.body = {
+        code: '10002',
+        message: '用户名已存在',
+        result: ''
+      }
+      return
+    }
+    
 
     // 数据库操作
     const res = await createUser(user_name, password)
