@@ -1,0 +1,14 @@
+
+
+# REST Client allows you to send HTTP request and view the response in Visual Studio Code directly.
+
+
+@hostname = localhost
+@port = 8000
+@host = {{hostname}}:{{port}}
+
+@contentType = application/json
+
+# POST http://{{host}}/users/register HTTP/1.1
+
+POST http://{{host}}/users/login HTTP/1.1
