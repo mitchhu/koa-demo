@@ -25,3 +25,7 @@
 #   "user_name": "Mitchell",
 #   "password": "12345678"
 # }
+
+PATCH  http://{{host}}/users HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTA3NzcyMjQsImV4cCI6MTY1MDg2MzYyNH0.P3Ud8-bE748pLeponjbDtSomkmb5kVRFa90L7P6abXM

@@ -35,7 +35,7 @@ class userController {
   async login(ctx, next) {
     const { user_name } = ctx.request.body
 
-    // 获取用户信息（在token的playload中，记录id，user_name, is_admin）
+    // 获取用户信息（在token的payload中，记录id，user_name, is_admin）
     try {
       // 剔除passwor属性，将剩余的属性放在res对象中
       const {password, ...res} = await getUserInfo({ user_name })
