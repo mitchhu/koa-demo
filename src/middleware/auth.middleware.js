@@ -3,13 +3,17 @@ const { JWT_SECRET } = require('../config/config.default')
 const {
   tokenExpiredError,
   invalidToken,
+  hasNotAdminPremission,
 } = require("../constant/error.type");
 
 
 const auth = async (ctx, next) => {
-
   const { authorization } = ctx.request.header
-  const token = authorization.replace('Bearer', '').trim()
+  const token = authorization && authorization.replace('Bearer', '').trim()
+  if(!token) {
+    return ctx.app.emit('error', invalidToken, ctx)
+  }
+
   try {
     // user中包含了payload的信息（id, user_name, is_admin）
     const user = jwt.verify(token, JWT_SECRET)
@@ -30,6 +34,18 @@ const auth = async (ctx, next) => {
   await next()
 }
 
+
+const hadAdminPermission = async (ctx, next) => {
+  const { is_admin } = ctx.state.user
+
+  if(!is_admin) {
+    return ctx.app.emit('error', hasNotAdminPremission, ctx)
+  }
+
+  await next()
+}
+
 module.exports = {
-  auth
+  auth,
+  hadAdminPermission
 }

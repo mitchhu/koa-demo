@@ -1,14 +1,12 @@
 const Router = require('koa-router')
 
+const { auth } = require("../middleware/auth.middleware");
 const {
   userValidator,
   verifyUser,
   cryptPassword,
   verifyLogin,
 } = require("../middleware/user.middleware");
-const {
-  auth,
-} = require("../middleware/auth.middleware");
 const {
   register,
   login,
