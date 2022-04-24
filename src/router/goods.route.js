@@ -8,6 +8,7 @@ const {
 const router = new Router({ prefix: '/goods' })
 
 // 上传
-router.post('/upload', auth, hadAdminPermission, upload)
+// router.post('/upload', auth, hadAdminPermission, upload)
+router.post('/upload', upload)
 
 module.exports = router
