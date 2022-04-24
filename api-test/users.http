@@ -8,17 +8,20 @@
 @host = {{hostname}}:{{port}}
 
 
+# POST http://{{host}}/users/register HTTP/1.1
+# content-type: application/json
 
-POST http://{{host}}/users/register HTTP/1.1
-content-type: application/json
-
-{
-  "user_name": "Mitchell",
-  "password": "12345678"
-}
-
-
+# {
+#   "user_name": "Mitchell",
+#   "password": "12345678"
+# }
 
 
 
 # POST http://{{host}}/users/login HTTP/1.1
+# content-type: application/json
+
+# {
+#   "user_name": "Mitchell",
+#   "password": "12345678"
+# }
