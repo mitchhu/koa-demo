@@ -1,7 +1,9 @@
 const User = require('../model/user.model')
 class UserService {
   async createUser(user_name, password) {
-    return user_name + password
+    // 插入数据
+    const res = await User.create({ user_name, password })
+    return res
   }
 
   async getUserInfo({id, user_name, password, is_admin}) {
