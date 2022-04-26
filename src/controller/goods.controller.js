@@ -2,9 +2,11 @@ const {
   fileUploadError,
   unSupportedFileType,
   publishGoodsError,
+  invalidGoodsID,
 } = require("../constant/error.type");
 const {
-  createGoods
+  createGoods,
+  updateGoods
 } = require("../service/goods.service");
 class GoodsController {
   async upload(ctx, next) {
@@ -39,6 +41,23 @@ class GoodsController {
       };
     } catch (err) {
       return ctx.app.emit("error", publishGoodsError, ctx);
+    }
+  }
+
+  async update(ctx, next) {
+    try {
+      const res = await updateGoods(ctx.params.id, ctx.request.body);
+      if(res) {
+        ctx.body = {
+          code: 0,
+          message: "修改商品成功",
+          result: res,
+        };
+      } else {
+        ctx.app.emit('error', invalidGoodsID, ctx);
+      }
+    } catch (err) {
+      return ctx.app.emit("error", {}, ctx);
     }
   }
 }
