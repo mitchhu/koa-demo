@@ -22,6 +22,22 @@ class GoodsService {
     return res > 0 ? true : false
   }
 
+  async findAllGoods(pageNme, pageSize) {
+    const offset = (pageNme - 1) * pageSize
+    const limit = pageSize * 1
+    // // 获取总数
+    // const count = await Goods.count()
+    // // 获取分页数据
+    // const rows = await Goods.findAll({ offset, limit })
+    const { count, rows } = await Goods.findAndCountAll({ offset, limit })
+    return {
+      pageNme,
+      pageSize,
+      total: count,
+      list: rows
+    }
+  }
+
 }
 
 

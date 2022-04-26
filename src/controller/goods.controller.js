@@ -9,8 +9,10 @@ const {
   updateGoods,
   removeGoods,
   restoreGoods,
+  findAllGoods,
 } = require("../service/goods.service");
 class GoodsController {
+
   async upload(ctx, next) {
     const { file } = ctx.request.files;
     // console.log("file", file);
@@ -97,6 +99,22 @@ class GoodsController {
     }
   }
 
+  async findAll(ctx, next) {
+    try {
+      // 解析pageNme和pageSize
+      const { pageNme = 1, pageSize = 10 } = ctx.request.query;
+      const res = await findAllGoods(pageNme, pageSize);
+      ctx.body = {
+        code: 0,
+        message: "获取商品列表成功",
+        result: res,
+      };
+    } catch (err) {
+      return ctx.app.emit("error", {}, ctx);
+    }
+  }
+
+  
 }
 
 module.exports = new GoodsController();
