@@ -6,7 +6,8 @@ const {
 } = require("../constant/error.type");
 const {
   createGoods,
-  updateGoods
+  updateGoods,
+  removeGoods,
 } = require("../service/goods.service");
 class GoodsController {
   async upload(ctx, next) {
@@ -60,6 +61,23 @@ class GoodsController {
       return ctx.app.emit("error", {}, ctx);
     }
   }
+  async remove(ctx, next) {
+    try {
+      const res = await removeGoods(ctx.params.id);
+      if(res) {
+        ctx.body = {
+          code: 0,
+          message: "删除成功",
+          result: '',
+        };
+      } else {
+        // ctx.app.emit('error', invalidGoodsID, ctx);
+      }
+    } catch (err) {
+      return ctx.app.emit("error", {}, ctx);
+    }
+  }
+
 }
 
 module.exports = new GoodsController();

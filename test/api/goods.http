@@ -30,3 +30,8 @@
 #   "goods_stock": 100,
 #   "goods_img": "4f44ec63faef9598b84168402.jpg"
 # }
+
+// 删除商品接口
+# DELETE  http://{{host}}/goods/6 HTTP/1.1
+# Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcl9uYW1lIjoiTWl0Y2hlbGwiLCJpc19hZG1pbiI6dHJ1ZSwiaWF0IjoxNjUwOTU0ODY0LCJleHAiOjE2NTEwNDEyNjR9.wDaa22d0xo32IhFiZci-HsQCiL-u743zbLOxP8uFG2U
