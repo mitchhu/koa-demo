@@ -8,6 +8,7 @@ const {
   createGoods,
   updateGoods,
   removeGoods,
+  restoreGoods,
 } = require("../service/goods.service");
 class GoodsController {
   async upload(ctx, next) {
@@ -61,17 +62,35 @@ class GoodsController {
       return ctx.app.emit("error", {}, ctx);
     }
   }
+
   async remove(ctx, next) {
     try {
       const res = await removeGoods(ctx.params.id);
       if(res) {
         ctx.body = {
           code: 0,
-          message: "删除成功",
+          message: "下架商品成功",
           result: '',
         };
       } else {
-        // ctx.app.emit('error', invalidGoodsID, ctx);
+        ctx.app.emit('error', invalidGoodsID, ctx);
+      }
+    } catch (err) {
+      return ctx.app.emit("error", {}, ctx);
+    }
+  }
+
+  async restore(ctx, next) {
+    try {
+      const res = await restoreGoods(ctx.params.id);
+      if(res) {
+        ctx.body = {
+          code: 0,
+          message: "上架商品成功",
+          result: '',
+        };
+      } else {
+        ctx.app.emit('error', invalidGoodsID, ctx);
       }
     } catch (err) {
       return ctx.app.emit("error", {}, ctx);

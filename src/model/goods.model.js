@@ -24,6 +24,8 @@ const Goods = seq.define('mall_goods', {
     allowNull: false,
     comment: '商品图片的url'
   },
+}, {
+  paranoid: true, // false:硬删除 true:软删除
 })
 
 // 强行同步数据库（创建数据表）
