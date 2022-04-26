@@ -13,13 +13,13 @@ const seq = new Sequelize(MYSQL_DB, MYSQL_USER, MYSQL_PWD, {
   dialect: 'mysql',
 })
 
-seq
-  .authenticate()
-  .then(() => {
-    console.log('Connection has been established successfully.');
-  }).catch(err => {
-    console.error('Unable to connect to the database:', err);
-  });
+// seq
+//   .authenticate()
+//   .then(() => {
+//     console.log('Connection has been established successfully.');
+//   }).catch(err => {
+//     console.error('Unable to connect to the database:', err);
+//   });
 
 
 module.exports = seq
