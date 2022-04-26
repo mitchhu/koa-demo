@@ -34,7 +34,7 @@ const auth = async (ctx, next) => {
 const hadAdminPermission = async (ctx, next) => {
   const { is_admin } = ctx.state.user
 
-  if(is_admin) {
+  if(!is_admin) {
     return ctx.app.emit('error', hasNotAdminPremission, ctx)
   }
 

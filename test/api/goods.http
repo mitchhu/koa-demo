@@ -1,0 +1,20 @@
+
+
+# REST Client allows you to send HTTP request and view the response in Visual Studio Code directly.
+
+
+@hostname = localhost
+@port = 8000
+@host = {{hostname}}:{{port}}
+
+
+POST  http://{{host}}/goods HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcl9uYW1lIjoiTWl0Y2hlbGwiLCJpc19hZG1pbiI6dHJ1ZSwiaWF0IjoxNjUwOTU0ODY0LCJleHAiOjE2NTEwNDEyNjR9.wDaa22d0xo32IhFiZci-HsQCiL-u743zbLOxP8uFG2U
+
+{
+  "goods_name": "香水 GDU",
+  "goods_price": 18999.99,
+  "goods_stock": 10,
+  "goods_img": "50a71b8d3fae877162e2e3500.jpg"
+}

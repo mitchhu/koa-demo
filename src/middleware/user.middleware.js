@@ -19,7 +19,7 @@ const userValidator = async (ctx, next) => {
     ctx.app.emit("error", userFormatError, ctx);
     return;
   }
-
+  
   await next();
 };
 
@@ -52,23 +52,18 @@ const cryptPassword = async (ctx, next) => {
 
 const verifyLogin = async (ctx, next) => {
   const { user_name, password } = ctx.request.body;
-
-  // 判断用户是否存在
   try {
+    // 判断用户是否存在
     const res = await getUserInfo({ user_name })
     if(!res) {
-      ctx.app.emit("error", userDoesNotExist, ctx);
-      return
+      return ctx.app.emit("error", userDoesNotExist, ctx);
+    }
+    // 密码是否匹配
+    if(!bcrypt.compareSync(password, res.password)) {
+      return ctx.app.emit('error', invalidPassword, ctx)
     }
   } catch (error) {
-    ctx.app.emit('error', userLoginError, ctx)
-    return
-  }
-
-  // 密码是否匹配
-  if(bcrypt.compareSync(password, password)) {
-    ctx.app.emit('error', invalidPassword, ctx)
-    return
+    return ctx.app.emit('error', userLoginError, ctx)
   }
 
   await next();

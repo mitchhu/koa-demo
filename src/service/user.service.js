@@ -17,8 +17,7 @@ class UserService {
       attributes: ['id', 'user_name', 'password', 'is_admin'],
       where: whereOpt
     })
-
-    return res
+    return res && res.dataValues
   }
 
   async updateById({id, user_name, password, is_admin}) {

@@ -9,43 +9,29 @@
 
 
 # POST http://{{host}}/users/register HTTP/1.1
-# content-type: application/json
+# Content-Type: application/json
 
 # {
-#   "user_name": "Tom",
-#   "password": "12345678"
+#   "user_name": "Mitchell",
+#   "password": "123"
 # }
 
 
 
 # POST http://{{host}}/users/login HTTP/1.1
-# content-type: application/json
+# Content-Type: application/json
 
 # {
-#   "user_name": "Tom",
-#   "password": "12345678"
+#   "user_name": "Mitchell",
+#   "password": "123"
 # }
 
 # PATCH  http://{{host}}/users HTTP/1.1
 # Content-Type: application/json
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTA3NzcyMjQsImV4cCI6MTY1MDg2MzYyNH0.P3Ud8-bE748pLeponjbDtSomkmb5kVRFa90L7P6abXM
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6OCwidXNlcl9uYW1lIjoiVG9tIiwiaXNfYWRtaW4iOmZhbHNlLCJpYXQiOjE2NTA5NTQxMDgsImV4cCI6MTY1MTA0MDUwOH0.o14qJT1LJUitFxd-Bn88I9vwEBfEmnMk--fCr8kLOcI
 
 # {
-#   "password": "6666666"
+#   "user_name": "Tom",
+#   "password": "123"
 # }
 
-
-# POST http://{{host}}/goods/upload HTTP/1.1
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTA3NzcyMjQsImV4cCI6MTY1MDg2MzYyNH0.P3Ud8-bE748pLeponjbDtSomkmb5kVRFa90L7P6abXM
-# Content-Type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW
-
-# # ------WebKitFormBoundary7MA4YWxkTrZu0gW
-# # Content-Disposition: form-data; name="text"
-
-# # title
-# ------WebKitFormBoundary7MA4YWxkTrZu0gW
-# Content-Disposition: form-data; name="file"; filename="1.png"
-# Content-Type: image/png
-
-# < /Users/humingchao/Desktoptup/scientistavatar.png
-# ------WebKitFormBoundary7MA4YWxkTrZu0gW--
