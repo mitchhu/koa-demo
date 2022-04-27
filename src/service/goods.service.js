@@ -22,8 +22,8 @@ class GoodsService {
     return res > 0 ? true : false
   }
 
-  async findAllGoods(pageNme, pageSize) {
-    const offset = (pageNme - 1) * pageSize
+  async findAllGoods(pageNum, pageSize) {
+    const offset = (pageNum - 1) * pageSize
     const limit = pageSize * 1
     // // 获取总数
     // const count = await Goods.count()
@@ -31,7 +31,7 @@ class GoodsService {
     // const rows = await Goods.findAll({ offset, limit })
     const { count, rows } = await Goods.findAndCountAll({ offset, limit })
     return {
-      pageNme,
+      pageNum,
       pageSize,
       total: count,
       list: rows
