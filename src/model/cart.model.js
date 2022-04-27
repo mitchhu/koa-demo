@@ -1,6 +1,7 @@
 
 const { DataTypes } = require('sequelize');
 const seq = require('../db/seq');
+const Goods = require('./goods.model')
 
 // 创建模型
 const Cart = seq.define('mall_carts', {
@@ -30,5 +31,9 @@ const Cart = seq.define('mall_carts', {
 
 // 强行同步数据库（创建数据表）
 // Cart.sync({ force: true })
+Cart.belongsTo(Goods, {
+  foreignKey: 'goods_id',
+  as: 'goods_info'
+})
 
 module.exports = Cart

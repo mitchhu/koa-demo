@@ -1,4 +1,4 @@
-const { createOrUpdate } = require('../service/cart.service');
+const { createOrUpdate, findAllCarts } = require('../service/cart.service');
 
 
 class CartController {
@@ -20,6 +20,23 @@ class CartController {
       ctx.app.emit('error', {}, ctx)
     }
   }
+
+
+  async findAll(ctx, next) {
+    try {
+      const { pageNum = 1, pageSize = 10 } = ctx.request.query;
+      const res = await findAllCarts(pageNum, pageSize);
+      console.log('res', res)
+      ctx.body = {
+        code: 0,
+        message: "获取购物车列表成功",
+        result: res,
+      };
+    } catch (err) {
+      return ctx.app.emit("error", {}, ctx);
+    }
+  }
+
 }
 
 module.exports = new CartController();

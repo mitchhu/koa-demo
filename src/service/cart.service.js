@@ -1,5 +1,6 @@
 const { Op } = require('sequelize');
-const Cart = require('../model/cart.model')
+const Cart = require('../model/cart.model');
+const Goods = require('../model/goods.model');
 
 class CartService {
 
@@ -23,6 +24,29 @@ class CartService {
       })
     }
   }
+
+  async findAllCarts(pageNum, pageSize) {
+    const offset = (pageNum - 1) * pageSize
+    const limit = pageSize * 1
+    const { count, rows } = await Cart.findAndCountAll({
+      attributes: ['id', 'number', 'selected'],
+      offset,
+      limit,
+      include: {
+        model: Goods,
+        as: 'goods_info',
+        attributes: ['id', 'goods_name', 'goods_price', 'goods_img']
+      }
+    })
+
+    return {
+      pageNum,
+      pageSize,
+      total: count,
+      list: rows
+    }
+  }
+  
 }
 
 
