@@ -2,7 +2,7 @@ const Router = require('koa-router')
 
 const { auth } = require("../middleware/auth.middleware");
 const { validator } = require("../middleware/cart.middleware");
-const { addToCart, findAll, update } = require("../controller/cart.controller");
+const { addToCart, findAll, update, remove } = require("../controller/cart.controller");
 
 const router = new Router({ prefix: '/carts' })
 
@@ -21,6 +21,17 @@ router.patch(
     selected: { type: 'bool', required: false },
   }),
   update
+);
+
+
+// 删除购物车
+router.delete(
+  '/',
+  auth,
+  validator({
+    ids: { type: 'array', required: true },
+  }),
+  remove
 );
 
 

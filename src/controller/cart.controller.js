@@ -1,5 +1,5 @@
 const { cartFormatError } = require('../constant/error.type');
-const { createOrUpdate, findAllCarts, updateCarts } = require('../service/cart.service');
+const { createOrUpdate, findAllCarts, updateCarts, removeCarts } = require('../service/cart.service');
 
 
 class CartController {
@@ -58,6 +58,22 @@ class CartController {
       }
     } catch (err) {
       return ctx.app.emit("error", {}, ctx);
+    }
+  }
+
+  async remove(ctx, next) {
+
+    const { ids } = ctx.request.body;
+
+    const res = await removeCarts(ids);
+    if(res) {
+      ctx.body = {
+        code: 0,
+        message: "删除购物车成功",
+        result: '',
+      };
+    } else {
+      ctx.app.emit('error', {message: '商品不存在',}, ctx)
     }
   }
 
