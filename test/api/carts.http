@@ -16,6 +16,15 @@
 #   "goods_id": 2
 # }
 
-GET  http://{{host}}/carts HTTP/1.1
+# GET  http://{{host}}/carts HTTP/1.1
+# Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcl9uYW1lIjoiTWl0Y2hlbGwiLCJpc19hZG1pbiI6dHJ1ZSwiaWF0IjoxNjUxMDQ0ODU0LCJleHAiOjE2NTExMzEyNTR9.DbM_BGHzRVioGlR4-I816mNoE-itov_vCoGa7wsq7dM
+
+
+PATCH  http://{{host}}/carts/2 HTTP/1.1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcl9uYW1lIjoiTWl0Y2hlbGwiLCJpc19hZG1pbiI6dHJ1ZSwiaWF0IjoxNjUxMDQ0ODU0LCJleHAiOjE2NTExMzEyNTR9.DbM_BGHzRVioGlR4-I816mNoE-itov_vCoGa7wsq7dM
+
+{
+  "number": 20
+}

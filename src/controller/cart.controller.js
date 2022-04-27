@@ -1,4 +1,5 @@
-const { createOrUpdate, findAllCarts } = require('../service/cart.service');
+const { cartFormatError } = require('../constant/error.type');
+const { createOrUpdate, findAllCarts, updateCarts } = require('../service/cart.service');
 
 
 class CartController {
@@ -32,6 +33,29 @@ class CartController {
         message: "获取购物车列表成功",
         result: res,
       };
+    } catch (err) {
+      return ctx.app.emit("error", {}, ctx);
+    }
+  }
+
+
+  async update(ctx, next) {
+    try {
+      const { id } = ctx.request.params;
+      const { number, selected } = ctx.request.body;
+      if(number === undefined && selected === undefined) {
+        return ctx.app.emit("error", cartFormatError, ctx);
+      }
+      const res = await updateCarts({ id, number, selected });
+      if(res) {
+        ctx.body = {
+          code: 0,
+          message: "更新购物车成功",
+          result: '',
+        };
+      } else {
+        return ctx.app.emit("error", {}, ctx);
+      }
     } catch (err) {
       return ctx.app.emit("error", {}, ctx);
     }
