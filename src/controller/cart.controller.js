@@ -1,5 +1,5 @@
 const { cartFormatError } = require('../constant/error.type');
-const { createOrUpdate, findAllCarts, updateCarts, removeCarts } = require('../service/cart.service');
+const { createOrUpdate, findAllCarts, updateCarts, removeCarts, selectAllCarts, unselectAllCarts } = require('../service/cart.service');
 
 
 class CartController {
@@ -76,6 +76,27 @@ class CartController {
       ctx.app.emit('error', {message: '商品不存在',}, ctx)
     }
   }
+
+  async selectAll(ctx, next) {
+    const user_id = ctx.state.user.id;
+    const res = await selectAllCarts(user_id);
+    ctx.body = {
+      code: 0,
+      message: "全选成功",
+      result: '',
+    };
+  }
+
+  async unselectAll(ctx, next) {
+    const user_id = ctx.state.user.id;
+    const res = await unselectAllCarts(user_id);
+    ctx.body = {
+      code: 0,
+      message: "取消全选成功",
+      result: '',
+    };
+  }
+  
 
 }
 

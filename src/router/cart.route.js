@@ -2,7 +2,7 @@ const Router = require('koa-router')
 
 const { auth } = require("../middleware/auth.middleware");
 const { validator } = require("../middleware/cart.middleware");
-const { addToCart, findAll, update, remove } = require("../controller/cart.controller");
+const { addToCart, findAll, update, remove, selectAll, unselectAll } = require("../controller/cart.controller");
 
 const router = new Router({ prefix: '/carts' })
 
@@ -33,6 +33,10 @@ router.delete(
   }),
   remove
 );
+
+// 全选与全不选
+router.post('/selectAll', auth, selectAll);
+router.post('/unselectAll', auth, unselectAll);
 
 
 // 4. 导出router对象
