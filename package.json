@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon ./src/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.0",
     "jsonwebtoken": "^8.5.1",
@@ -20,9 +21,11 @@
     "koa-router": "^10.1.1",
     "koa-static": "^5.0.0",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.19.0"
+    "sequelize": "^6.19.0",
+    "supertest": "^6.2.3"
   },
   "devDependencies": {
+    "jest": "^28.0.2",
     "nodemon": "^2.0.15"
   }
 }
