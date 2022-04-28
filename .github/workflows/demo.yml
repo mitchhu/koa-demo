@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2       # git pull
       - name: Use Node.js
-        uses: actions/steup-node@v1     # 安装 node.js
+        uses: actions/setup-node@v1     # 安装 node.js
         with:
           node-version: 14
       - name: print node version
