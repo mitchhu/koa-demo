@@ -1,0 +1,37 @@
+# 自动化测试
+
+name: demo
+
+# 触发条件
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/**'
+      - '__test__/**'
+      - 'src/**'
+
+
+# 任务
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2       # git pull
+      - name: Use Node.js
+        uses: actions/steup-node@v1     # 安装 node.js
+        with:
+          node-version: 14
+      - name: print node version
+        run: |
+          node -v
+          npm -v
+          echo 'hello github actions'
+  test2:
+    runs-on: ubuntu-latest
+    steps:
+      - run: touch a.txt
+      - run: echo 100 > a.txt
+      - run: cat a.txt
+
