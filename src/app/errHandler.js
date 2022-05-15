@@ -3,15 +3,15 @@ module.exports = (err, ctx) => {
   switch (err.code) {
     case '10001':
       status = 400
-      break;
+      break
     case '10002':
-      tatus = 409
-      break;
+      status = 409
+      break
     case '10003':
-      break;
+      break
     default:
       status = 500
-      break;
+      break
   }
   ctx.status = status
   ctx.body = err

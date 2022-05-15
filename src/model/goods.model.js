@@ -1,6 +1,6 @@
 
-const { DataTypes } = require('sequelize');
-const seq = require('../db/seq');
+const { DataTypes } = require('sequelize')
+const seq = require('../db/seq')
 
 // 创建模型
 const Goods = seq.define('mall_goods', {
@@ -23,9 +23,9 @@ const Goods = seq.define('mall_goods', {
     type: DataTypes.STRING,
     allowNull: false,
     comment: '商品图片的url'
-  },
+  }
 }, {
-  paranoid: true, // false:硬删除 true:软删除
+  paranoid: true // false:硬删除 true:软删除
 })
 
 // 强行同步数据库（创建数据表）

@@ -2,119 +2,116 @@ const {
   fileUploadError,
   unSupportedFileType,
   publishGoodsError,
-  invalidGoodsID,
-} = require("../constant/error.type");
+  invalidGoodsID
+} = require('../constant/error.type')
 const {
   createGoods,
   updateGoods,
   removeGoods,
   restoreGoods,
-  findAllGoods,
-} = require("../service/goods.service");
+  findAllGoods
+} = require('../service/goods.service')
 class GoodsController {
-
-  async upload(ctx, next) {
-    const { file } = ctx.request.files;
+  async upload (ctx, next) {
+    const { file } = ctx.request.files
     // console.log("file", file);
     if (file) {
-      const fileType = ["image/png", "image/jpeg"];
+      const fileType = ['image/png', 'image/jpeg']
       if (!fileType.includes(file.mimetype)) {
-        return ctx.app.emit("error", unSupportedFileType, ctx);
+        return ctx.app.emit('error', unSupportedFileType, ctx)
       }
 
       ctx.body = {
         code: 0,
-        message: "upload success",
+        message: 'upload success',
         result: {
-          goods_img: file.newFilename,
-        },
-      };
+          goods_img: file.newFilename
+        }
+      }
     } else {
-      return ctx.app.emit("error", fileUploadError, ctx);
+      return ctx.app.emit('error', fileUploadError, ctx)
     }
   }
 
-  async create(ctx, next) {
+  async create (ctx, next) {
     try {
       // 调用service的createGoods方法
-      const {createdAt, updatedAt, ...res} = await createGoods(ctx.request.body);
+      const { createdAt, updatedAt, ...res } = await createGoods(ctx.request.body)
       ctx.body = {
         code: 0,
-        message: "发布商品成功",
-        result: res,
-      };
-    } catch (err) {
-      return ctx.app.emit("error", publishGoodsError, ctx);
-    }
-  }
-
-  async update(ctx, next) {
-    try {
-      const res = await updateGoods(ctx.params.id, ctx.request.body);
-      if(res) {
-        ctx.body = {
-          code: 0,
-          message: "修改商品成功",
-          result: res,
-        };
-      } else {
-        ctx.app.emit('error', invalidGoodsID, ctx);
+        message: '发布商品成功',
+        result: res
       }
     } catch (err) {
-      return ctx.app.emit("error", {}, ctx);
+      return ctx.app.emit('error', publishGoodsError, ctx)
     }
   }
 
-  async remove(ctx, next) {
+  async update (ctx, next) {
     try {
-      const res = await removeGoods(ctx.params.id);
-      if(res) {
+      const res = await updateGoods(ctx.params.id, ctx.request.body)
+      if (res) {
         ctx.body = {
           code: 0,
-          message: "下架商品成功",
-          result: '',
-        };
+          message: '修改商品成功',
+          result: res
+        }
       } else {
-        ctx.app.emit('error', invalidGoodsID, ctx);
+        ctx.app.emit('error', invalidGoodsID, ctx)
       }
     } catch (err) {
-      return ctx.app.emit("error", {}, ctx);
+      return ctx.app.emit('error', {}, ctx)
     }
   }
 
-  async restore(ctx, next) {
+  async remove (ctx, next) {
     try {
-      const res = await restoreGoods(ctx.params.id);
-      if(res) {
+      const res = await removeGoods(ctx.params.id)
+      if (res) {
         ctx.body = {
           code: 0,
-          message: "上架商品成功",
-          result: '',
-        };
+          message: '下架商品成功',
+          result: ''
+        }
       } else {
-        ctx.app.emit('error', invalidGoodsID, ctx);
+        ctx.app.emit('error', invalidGoodsID, ctx)
       }
     } catch (err) {
-      return ctx.app.emit("error", {}, ctx);
+      return ctx.app.emit('error', {}, ctx)
     }
   }
 
-  async findAll(ctx, next) {
+  async restore (ctx, next) {
+    try {
+      const res = await restoreGoods(ctx.params.id)
+      if (res) {
+        ctx.body = {
+          code: 0,
+          message: '上架商品成功',
+          result: ''
+        }
+      } else {
+        ctx.app.emit('error', invalidGoodsID, ctx)
+      }
+    } catch (err) {
+      return ctx.app.emit('error', {}, ctx)
+    }
+  }
+
+  async findAll (ctx, next) {
     try {
       // 解析pageNme和pageSize
-      const { pageNum = 1, pageSize = 10 } = ctx.request.query;
-      const res = await findAllGoods(pageNum, pageSize);
+      const { pageNum = 1, pageSize = 10 } = ctx.request.query
+      const res = await findAllGoods(pageNum, pageSize)
       ctx.body = {
         code: 0,
-        message: "获取商品列表成功",
-        result: res,
-      };
+        message: '获取商品列表成功',
+        result: res
+      }
     } catch (err) {
-      return ctx.app.emit("error", {}, ctx);
+      return ctx.app.emit('error', {}, ctx)
     }
   }
-
-  
 }
 
-module.exports = new GoodsController();
+module.exports = new GoodsController()

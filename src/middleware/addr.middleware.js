@@ -1,5 +1,4 @@
-const { addrFormatError } = require("../constant/error.type");
-
+const { addrFormatError } = require('../constant/error.type')
 
 const validator = (rules) => {
   return async (ctx, next) => {

@@ -1,10 +1,9 @@
-const { Op } = require('sequelize');
-const Cart = require('../model/cart.model');
-const Goods = require('../model/goods.model');
+const { Op } = require('sequelize')
+const Cart = require('../model/cart.model')
+const Goods = require('../model/goods.model')
 
 class CartService {
-
-  async createOrUpdate(user_id, goods_id) {
+  async createOrUpdate (user_id, goods_id) {
     // 根据用户id和商品id查询是否存在该商品
     const res = await Cart.findOne({
       where: {
@@ -14,7 +13,7 @@ class CartService {
         }
       }
     })
-    if(res) {
+    if (res) {
       await res.increment('number')
       return await res.reload()
     } else {
@@ -25,7 +24,7 @@ class CartService {
     }
   }
 
-  async findAllCarts(pageNum, pageSize) {
+  async findAllCarts (pageNum, pageSize) {
     const offset = (pageNum - 1) * pageSize
     const limit = pageSize * 1
     const { count, rows } = await Cart.findAndCountAll({
@@ -47,15 +46,15 @@ class CartService {
     }
   }
 
-  async updateCarts({id, number, selected}) {
+  async updateCarts ({ id, number, selected }) {
     const res = await Cart.findByPk(id)
-    if(!res) return ''
+    if (!res) return ''
     number !== undefined && (res.number = number)
     selected !== undefined && (res.selected = selected)
     return await res.save()
   }
 
-  async removeCarts(ids) {
+  async removeCarts (ids) {
     return await Cart.destroy({
       where: {
         id: {
@@ -65,29 +64,27 @@ class CartService {
     })
   }
 
-  async selectAllCarts(user_id) {
+  async selectAllCarts (user_id) {
     return await Cart.update(
       { selected: true },
       {
         where: {
-          user_id,
+          user_id
         }
       }
     )
   }
 
-  async unselectAllCarts(user_id) {
+  async unselectAllCarts (user_id) {
     return await Cart.update(
       { selected: false },
       {
         where: {
-          user_id,
+          user_id
         }
       }
     )
   }
-  
 }
-
 
 module.exports = new CartService()

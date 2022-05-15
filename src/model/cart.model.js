@@ -1,6 +1,6 @@
 
-const { DataTypes } = require('sequelize');
-const seq = require('../db/seq');
+const { DataTypes } = require('sequelize')
+const seq = require('../db/seq')
 const Goods = require('./goods.model')
 
 // 创建模型
@@ -26,7 +26,7 @@ const Cart = seq.define('mall_carts', {
     allowNull: false,
     defaultValue: true,
     comment: '是否选中'
-  },
+  }
 })
 
 // 强行同步数据库（创建数据表）

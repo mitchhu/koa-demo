@@ -13,9 +13,9 @@ app.use(KoaBody({
   multipart: true,
   formidable: {
     uploadDir: path.join(__dirname, '../upload'),
-    keepExtensions: true,
+    keepExtensions: true
   },
-  parsedMethods: ['POST', 'PUT', 'PATCH', 'DELETE'],
+  parsedMethods: ['POST', 'PUT', 'PATCH', 'DELETE']
 }))
   .use(KoaStatic(path.join(__dirname, '../upload')))
   .use(parameter(app))
@@ -24,6 +24,5 @@ app.use(KoaBody({
 
 // 统一处理错误
 app.on('error', errHandler)
-
 
 module.exports = app

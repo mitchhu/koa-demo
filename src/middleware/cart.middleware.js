@@ -1,5 +1,4 @@
-const { cartFormatError } = require("../constant/error.type");
-
+const { cartFormatError } = require('../constant/error.type')
 
 const validator = (rules) => {
   return async (ctx, next) => {

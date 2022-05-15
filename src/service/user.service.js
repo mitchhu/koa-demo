@@ -1,12 +1,12 @@
 const User = require('../model/user.model')
 class UserService {
-  async createUser(user_name, password) {
+  async createUser (user_name, password) {
     // 插入数据
     const res = await User.create({ user_name, password })
     return res
   }
 
-  async getUserInfo({id, user_name, password, is_admin}) {
+  async getUserInfo ({ id, user_name, password, is_admin }) {
     const whereOpt = {}
     id && Object.assign(whereOpt, { id })
     user_name && Object.assign(whereOpt, { user_name })
@@ -20,8 +20,8 @@ class UserService {
     return res && res.dataValues
   }
 
-  async updateById({id, user_name, password, is_admin}) {
-    const whereOpt = {id}
+  async updateById ({ id, user_name, password, is_admin }) {
+    const whereOpt = { id }
     const newUser = {}
     user_name && Object.assign(newUser, { user_name })
     password && Object.assign(newUser, { password })
@@ -34,6 +34,5 @@ class UserService {
     return res
   }
 }
-
 
 module.exports = new UserService()

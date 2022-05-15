@@ -1,16 +1,16 @@
 const Router = require('koa-router')
 
-const { auth } = require("../middleware/auth.middleware");
-const { validator } = require("../middleware/cart.middleware");
-const { addToCart, findAll, update, remove, selectAll, unselectAll } = require("../controller/cart.controller");
+const { auth } = require('../middleware/auth.middleware')
+const { validator } = require('../middleware/cart.middleware')
+const { addToCart, findAll, update, remove, selectAll, unselectAll } = require('../controller/cart.controller')
 
 const router = new Router({ prefix: '/carts' })
 
 // 添加购物车
-router.post('/', auth, validator({ goods_id: 'number' }), addToCart);
+router.post('/', auth, validator({ goods_id: 'number' }), addToCart)
 
 // 获取购物车列表
-router.get('/', auth, findAll);
+router.get('/', auth, findAll)
 
 // 更新购物车
 router.patch(
@@ -18,26 +18,24 @@ router.patch(
   auth,
   validator({
     number: { type: 'number', required: false },
-    selected: { type: 'bool', required: false },
+    selected: { type: 'bool', required: false }
   }),
   update
-);
-
+)
 
 // 删除购物车
 router.delete(
   '/',
   auth,
   validator({
-    ids: { type: 'array', required: true },
+    ids: { type: 'array', required: true }
   }),
   remove
-);
+)
 
 // 全选与全不选
-router.post('/selectAll', auth, selectAll);
-router.post('/unselectAll', auth, unselectAll);
-
+router.post('/selectAll', auth, selectAll)
+router.post('/unselectAll', auth, unselectAll)
 
 // 4. 导出router对象
 module.exports = router

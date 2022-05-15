@@ -4,18 +4,15 @@ const { userRegisterError } = require('../constant/error.type')
 
 const { JWT_SECRET } = require('../config/config.default')
 
-class userController {
-  
-  async register(ctx, next) {
-
+class UserController {
+  async register (ctx, next) {
     // 获取数据
     const { user_name, password } = ctx.request.body
 
     try {
-
       // 数据库操作
       const res = await createUser(user_name, password)
-      
+
       // 返回结果
       ctx.body = {
         code: 0,
@@ -30,18 +27,18 @@ class userController {
     }
   }
 
-  async login(ctx, next) {
+  async login (ctx, next) {
     const { user_name } = ctx.request.body
 
     // 获取用户信息（在token的payload中，记录id，user_name, is_admin）
     try {
       // 剔除passwor属性，将剩余的属性放在res对象中
-      const {password, ...res} = await getUserInfo({ user_name })
+      const { password, ...res } = await getUserInfo({ user_name })
       ctx.body = {
         code: 0,
         message: '用户登录成功',
         result: {
-          token: jwt.sign(res, JWT_SECRET, {expiresIn: '1d'})
+          token: jwt.sign(res, JWT_SECRET, { expiresIn: '1d' })
         }
       }
     } catch (err) {
@@ -49,13 +46,13 @@ class userController {
     }
   }
 
-  async changePassword(ctx, next) {
-    const { id } = ctx.state.user;
-    const { password } = ctx.request.body;
-    
+  async changePassword (ctx, next) {
+    const { id } = ctx.state.user
+    const { password } = ctx.request.body
+
     try {
-      const res = await updateById({id, password})
-      if(res) {
+      const res = await updateById({ id, password })
+      if (res) {
         ctx.body = {
           code: 0,
           message: '密码修改成功',
@@ -68,4 +65,4 @@ class userController {
   }
 }
 
-module.exports = new userController()
+module.exports = new UserController()

@@ -3,9 +3,8 @@ const { JWT_SECRET } = require('../config/config.default')
 const {
   tokenExpiredError,
   invalidToken,
-  hasNotAdminPremission,
-} = require("../constant/error.type");
-
+  hasNotAdminPremission
+} = require('../constant/error.type')
 
 const auth = async (ctx, next) => {
   const { authorization = '' } = ctx.request.header
@@ -23,18 +22,17 @@ const auth = async (ctx, next) => {
         console.log('无效的token', err)
         return ctx.app.emit('error', invalidToken, ctx)
       default:
-        break;
+        break
     }
   }
 
   await next()
 }
 
-
 const hadAdminPermission = async (ctx, next) => {
   const { is_admin } = ctx.state.user
 
-  if(!is_admin) {
+  if (!is_admin) {
     return ctx.app.emit('error', hasNotAdminPremission, ctx)
   }
 

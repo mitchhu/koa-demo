@@ -2,81 +2,81 @@ module.exports = {
   userFormatError: {
     code: '10001',
     message: '用户名或密码为空',
-    result: '',
+    result: ''
   },
   userAlreadyExited: {
     code: '10002',
     message: '用户名已存在',
-    result: '',
+    result: ''
   },
   userRegisterError: {
     code: '10003',
     message: '用户注册错误',
-    result: '',
+    result: ''
   },
   userDoesNotExist: {
     code: '10004',
     message: '用户名不存在',
-    result: '',
+    result: ''
   },
   userLoginError: {
     code: '10005',
     message: '用户登录失败',
-    result: '',
+    result: ''
   },
   invalidPassword: {
     code: '10006',
     message: '密码不匹配',
-    result: '',
+    result: ''
   },
   tokenExpiredError: {
     code: '10101',
     message: 'token已过期',
-    result: '',
+    result: ''
   },
   invalidToken: {
     code: '10102',
     message: '无效的token',
-    result: '',
+    result: ''
   },
   hasNotAdminPremission: {
     code: '10103',
     message: '没有管理员权限',
-    result: '',
+    result: ''
   },
   fileUploadError: {
     code: '10201',
     message: '文件上传失败',
-    result: '',
+    result: ''
   },
   unSupportedFileType: {
     code: '10202',
     message: '不支持的文件格式',
-    result: '',
+    result: ''
   },
   goodsFormatError: {
     code: '10203',
     message: '商品参数格式错误',
-    result: '',
+    result: ''
   },
   publishGoodsError: {
     code: '10204',
     message: '发布商品失败',
-    result: '',
+    result: ''
   },
   invalidGoodsID: {
     code: '10205',
     message: '无效的商品ID',
-    result: '',
+    result: ''
   },
   cartFormatError: {
     code: '10301',
     message: '购物车参数格式错误',
-    result: '',
+    result: ''
   },
   addrFormatError: {
     code: '10401',
     message: '地址参数格式错误',
-    result: '',
-  },
+    result: ''
+  }
 }

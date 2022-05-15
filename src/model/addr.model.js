@@ -1,6 +1,6 @@
 
-const { DataTypes } = require('sequelize');
-const seq = require('../db/seq');
+const { DataTypes } = require('sequelize')
+const seq = require('../db/seq')
 
 // 创建模型
 const Address = seq.define('mall_address', {
@@ -29,7 +29,7 @@ const Address = seq.define('mall_address', {
     allowNull: false,
     defaultValue: false,
     comment: '是否默认地址'
-  },
+  }
 })
 
 // 强行同步数据库（创建数据表）
